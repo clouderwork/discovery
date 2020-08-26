@@ -6,7 +6,7 @@ enableprotect=false
 [env]
 region = "sh"
 zone = "sh001"
-host = "test1"
+host = "workchat"
 DeployEnv = "dev"
 
 
