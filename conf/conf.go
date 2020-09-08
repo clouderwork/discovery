@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/BurntSushi/toml"
+	kartosEnv "github.com/bilibili/kratos/pkg/conf/env"
 	"github.com/bilibili/kratos/pkg/conf/paladin"
 	log "github.com/bilibili/kratos/pkg/log"
 	http "github.com/bilibili/kratos/pkg/net/http/blademaster"
@@ -72,8 +73,16 @@ type Env struct {
 	DeployEnv string
 }
 
+func fixDefEnv() {
+	region = kartosEnv.Region
+	zone = kartosEnv.Zone
+	deployEnv = kartosEnv.DeployEnv
+	println("fixDefEnv", "region", region, "zone", zone, "deployEnv", deployEnv)
+}
+
 // Init init conf
 func Init() (err error) {
+	fixDefEnv()
 	if err = paladin.Init(); err != nil {
 		return
 	}
